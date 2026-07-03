@@ -4274,6 +4274,9 @@ const mp = (() => {
                 <option value="api" ${p.bgMode==='api'?'selected':''}>☁️ remove.bg API (your key, 50 free previews/month)</option>
               </select>
             </div>
+            <div style="margin-top:8px;padding:9px 12px;background:linear-gradient(135deg,rgba(249,107,63,0.12),rgba(255,192,96,0.12));border:1.5px solid rgba(249,107,63,0.35);border-radius:9px;font-size:11.5px;color:var(--text,#2a1d16);line-height:1.5">
+              💡 <strong>For the best, professional-quality cutout</strong> (clean edges, accurate hair detail) — use the <strong>☁️ remove.bg API</strong> option above. The built-in local AI is fast and free, but can be less precise on tricky edges.
+            </div>
             <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0 4px">
               <span class="ds-removebg-key-status" style="font-size:11px"></span>
               <button onclick="showRemoveBgSetup()" style="font-size:10.5px;padding:3px 10px;border-radius:7px;border:1.5px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;font-weight:600">⚙ Setup Key</button>
