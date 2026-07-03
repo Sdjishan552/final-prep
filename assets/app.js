@@ -2695,9 +2695,12 @@ window.sdt = (() => {
     const qual=mtState.quality/100;
     const dataUrl=mtResultCanvas.toDataURL('image/jpeg',qual);
 
+    pdf.setDrawColor(0,0,0);
+    pdf.setLineWidth(0.3);
     for(let i=0;i<placeable;i++){
       const {xMM,yMM}=getImgPos(i,g,marginMM,gapMM,pW,pH);
       pdf.addImage(dataUrl,'JPEG',xMM,yMM,g.placedW,g.placedH,undefined,'FAST');
+      pdf.rect(xMM,yMM,g.placedW,g.placedH);
     }
     saveBlob(pdf.output('blob'),'passport_photos_a4.pdf');
     if(g.overflow) toast(`PDF saved — only ${placeable} of ${count} fit at this size.`,'info');
@@ -5164,6 +5167,8 @@ const mp = (() => {
     const areaH = pH - marginMM * 2;
     const placements = computeContinuousPlacements(activePeople.filter(p => p.resultCanvas), areaW, areaH, gapMM);
     const imageCache = new Map();
+    pdf.setDrawColor(0,0,0);
+    pdf.setLineWidth(0.3);
     for (const item of placements) {
       if (!imageCache.has(item.person)) {
         const flattened = document.createElement('canvas');
@@ -5176,6 +5181,7 @@ const mp = (() => {
         imageCache.set(item.person, flattened.toDataURL('image/jpeg', 0.92));
       }
       pdf.addImage(imageCache.get(item.person), 'JPEG', marginMM + item.x, marginMM + item.y, item.w, item.h, undefined, 'FAST');
+      pdf.rect(marginMM + item.x, marginMM + item.y, item.w, item.h);
     }
 
     const blob = pdf.output('blob');
@@ -5308,6 +5314,8 @@ const mp = (() => {
     };
 
     // Place each image — CONTAIN (preserve aspect ratio, letter-box inside cell)
+    pdf.setDrawColor(0,0,0);
+    pdf.setLineWidth(0.3);
     for (let i = 0; i < n; i++) {
       const col = i % gridCols;
       const row = Math.floor(i / gridCols);
@@ -5333,6 +5341,7 @@ const mp = (() => {
       const yMM = cellYMM + (cellH - drawH) / 2;
 
       pdf.addImage(getJpeg(cv), 'JPEG', xMM, yMM, drawW, drawH, undefined, 'FAST');
+      pdf.rect(xMM, yMM, drawW, drawH);
     }
 
     const outBlob = pdf.output('blob');
@@ -5448,6 +5457,8 @@ const mp = (() => {
     const areaH = pH - marginMM * 2;
     const placements = computeContinuousPlacements(activePeople.filter(p => p.resultCanvas), areaW, areaH, gapMM);
     const imageCache = new Map();
+    pdf.setDrawColor(0,0,0);
+    pdf.setLineWidth(0.3);
     for (const item of placements) {
       if (!imageCache.has(item.person)) {
         const flattened = document.createElement('canvas');
@@ -5460,6 +5471,7 @@ const mp = (() => {
         imageCache.set(item.person, flattened.toDataURL('image/jpeg', 0.92));
       }
       pdf.addImage(imageCache.get(item.person), 'JPEG', marginMM + item.x, marginMM + item.y, item.w, item.h, undefined, 'FAST');
+      pdf.rect(marginMM + item.x, marginMM + item.y, item.w, item.h);
     }
 
     openPdfForPrint(pdf.output('blob'));
@@ -5518,6 +5530,8 @@ const mp = (() => {
       return imageCache.get(cv);
     };
 
+    pdf.setDrawColor(0,0,0);
+    pdf.setLineWidth(0.3);
     for (let i = 0; i < n; i++) {
       const col = i % gridCols, row = Math.floor(i / gridCols);
       const cellXMM = mLeft + col*(cellW+gapMM);
@@ -5531,6 +5545,7 @@ const mp = (() => {
       const xMM = cellXMM + (cellW - drawW) / 2;
       const yMM = cellYMM + (cellH - drawH) / 2;
       pdf.addImage(getJpeg(cv), 'JPEG', xMM, yMM, drawW, drawH, undefined, 'FAST');
+      pdf.rect(xMM, yMM, drawW, drawH);
     }
 
     openPdfForPrint(pdf.output('blob'));
