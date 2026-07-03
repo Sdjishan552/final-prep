@@ -4933,7 +4933,7 @@ const mp = (() => {
       const px = Math.round((marginMM + item.x)*PX), py = Math.round((marginMM + item.y)*PX);
       const pw2 = Math.round(item.w*PX), ph2 = Math.round(item.h*PX);
       ctx.drawImage(item.person.resultCanvas, px, py, pw2, ph2);
-      ctx.strokeStyle='#000000'; ctx.lineWidth=1;
+      ctx.strokeStyle='#000000'; ctx.lineWidth=0.5;
       ctx.strokeRect(px+0.5, py+0.5, pw2-1, ph2-1);
       placedByPerson.set(item.person, (placedByPerson.get(item.person) || 0) + 1);
     }
@@ -5168,7 +5168,7 @@ const mp = (() => {
     const placements = computeContinuousPlacements(activePeople.filter(p => p.resultCanvas), areaW, areaH, gapMM);
     const imageCache = new Map();
     pdf.setDrawColor(0,0,0);
-    pdf.setLineWidth(0.3);
+    pdf.setLineWidth(0.15);
     for (const item of placements) {
       if (!imageCache.has(item.person)) {
         const flattened = document.createElement('canvas');
@@ -5315,7 +5315,7 @@ const mp = (() => {
 
     // Place each image — CONTAIN (preserve aspect ratio, letter-box inside cell)
     pdf.setDrawColor(0,0,0);
-    pdf.setLineWidth(0.3);
+    pdf.setLineWidth(0.15);
     for (let i = 0; i < n; i++) {
       const col = i % gridCols;
       const row = Math.floor(i / gridCols);
@@ -5458,7 +5458,7 @@ const mp = (() => {
     const placements = computeContinuousPlacements(activePeople.filter(p => p.resultCanvas), areaW, areaH, gapMM);
     const imageCache = new Map();
     pdf.setDrawColor(0,0,0);
-    pdf.setLineWidth(0.3);
+    pdf.setLineWidth(0.15);
     for (const item of placements) {
       if (!imageCache.has(item.person)) {
         const flattened = document.createElement('canvas');
@@ -5531,7 +5531,7 @@ const mp = (() => {
     };
 
     pdf.setDrawColor(0,0,0);
-    pdf.setLineWidth(0.3);
+    pdf.setLineWidth(0.15);
     for (let i = 0; i < n; i++) {
       const col = i % gridCols, row = Math.floor(i / gridCols);
       const cellXMM = mLeft + col*(cellW+gapMM);
