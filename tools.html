@@ -1004,7 +1004,13 @@
 
   <!-- remove.bg Setup Modal -->
   <div id="removeBgSetupModal" style="display:none;position:fixed;inset:0;z-index:999998;background:rgba(10,14,22,0.88);backdrop-filter:blur(6px);align-items:center;justify-content:center;flex-direction:column;padding:20px">
-    <div style="background:var(--surface,#1e2c40);border-radius:20px;padding:32px;max-width:500px;width:100%;border:1.5px solid rgba(255,255,255,0.12);box-shadow:0 32px 80px rgba(0,0,0,0.6);position:relative">
+    <!-- BUGFIX (unreadable text): this modal's text is all hardcoded white, so it
+         needs a fixed dark background. It previously used var(--surface,#1e2c40),
+         but --surface IS defined by the site's light theme (a cream/light color),
+         so that value won and overrode the dark fallback — leaving white text on
+         a near-white background, which is invisible. Using a fixed dark color
+         here means it always looks right regardless of the page's theme. -->
+    <div style="background:#1e2c40;border-radius:20px;padding:32px;max-width:500px;width:100%;border:1.5px solid rgba(255,255,255,0.12);box-shadow:0 32px 80px rgba(0,0,0,0.6);position:relative">
       <button onclick="hideRemoveBgSetup()" style="position:absolute;top:16px;right:16px;background:transparent;border:none;color:rgba(255,255,255,0.5);font-size:20px;cursor:pointer;line-height:1">✕</button>
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
         <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#f96b3f,#ffd060);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">✂️</div>
