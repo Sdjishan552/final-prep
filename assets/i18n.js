@@ -90,6 +90,19 @@ const I18N = {
     sigPlacerPos:   'Position:',
     btnConfirmPlacement: '✓ Confirm Placement',
 
+    /* ---- remove.bg Setup Modal ---- */
+    rbgTitle:       'Setup remove.bg API Key',
+    rbgSubtitle:    'Your key is saved only in your browser — we never see it',
+    rbgHowTitle:    '📋 How to get your FREE API Key',
+    rbgStep1:       'Go to <a href="https://www.remove.bg" target="_blank" style="color:#f96b3f;font-weight:600">remove.bg</a> and click <strong style="color:#fff">Sign Up</strong>',
+    rbgStep2:       'After logging in, click <strong style="color:#fff">API</strong> in the top nav',
+    rbgStep3:       'Click <strong style="color:#fff">Get API Key</strong> and copy it',
+    rbgStep4:       'Paste it below and click <strong style="color:#fff">Save Key</strong>',
+    rbgFreeTier:    '<strong style="color:#a9a4ff">📊 Free tier:</strong> 50 API calls/month · resets on the 1st of each month',
+    rbgPasteLabel:  'Paste your API Key here:',
+    rbgPlaceholder: 'e.g. abc123XYZ...',
+    rbgSaveBtn:     '✅ Save Key',
+
     /* ---- SDT page ---- */
     btnBackToStitcher: 'Back to Stitcher',
     sdtBadge:          'Single-Doc Tools',
@@ -325,6 +338,19 @@ const I18N = {
     sigPlacerPos:   'स्थान:',
     btnConfirmPlacement: '✓ स्थान पुष्टि करें',
 
+    /* ---- remove.bg Setup Modal ---- */
+    rbgTitle:       'remove.bg API की सेटअप करें',
+    rbgSubtitle:    'आपकी की केवल आपके ब्राउज़र में सेव होती है — हम इसे कभी नहीं देखते',
+    rbgHowTitle:    '📋 अपनी मुफ़्त API की कैसे पाएं',
+    rbgStep1:       '<a href="https://www.remove.bg" target="_blank" style="color:#f96b3f;font-weight:600">remove.bg</a> पर जाएं और <strong style="color:#fff">Sign Up</strong> पर क्लिक करें',
+    rbgStep2:       'लॉगिन करने के बाद, ऊपर के नेविगेशन में <strong style="color:#fff">API</strong> पर क्लिक करें',
+    rbgStep3:       '<strong style="color:#fff">Get API Key</strong> पर क्लिक करें और उसे कॉपी करें',
+    rbgStep4:       'नीचे पेस्ट करें और <strong style="color:#fff">Save Key</strong> पर क्लिक करें',
+    rbgFreeTier:    '<strong style="color:#a9a4ff">📊 मुफ़्त सीमा:</strong> हर महीने 50 API कॉल · हर महीने की 1 तारीख को रीसेट होती है',
+    rbgPasteLabel:  'अपनी API की यहां पेस्ट करें:',
+    rbgPlaceholder: 'उदा. abc123XYZ...',
+    rbgSaveBtn:     '✅ की सेव करें',
+
     /* ---- SDT page ---- */
     btnBackToStitcher: 'स्टिचर पर वापस जाएं',
     sdtBadge:          'एकल-डॉक टूल्स',
@@ -559,6 +585,19 @@ const I18N = {
     sigPlacerHint:  '← → ↑ ↓ সরাতে · Shift + তীর = বড় পদক্ষেপ · Enter নিশ্চিত করতে · Esc বাতিল করতে',
     sigPlacerPos:   'অবস্থান:',
     btnConfirmPlacement: '✓ স্থান নিশ্চিত করুন',
+
+    /* ---- remove.bg Setup Modal ---- */
+    rbgTitle:       'remove.bg API কী সেট আপ করুন',
+    rbgSubtitle:    'আপনার কী শুধু আপনার ব্রাউজারে সংরক্ষিত থাকে — আমরা কখনো এটি দেখি না',
+    rbgHowTitle:    '📋 আপনার ফ্রি API কী কীভাবে পাবেন',
+    rbgStep1:       '<a href="https://www.remove.bg" target="_blank" style="color:#f96b3f;font-weight:600">remove.bg</a>-এ যান এবং <strong style="color:#fff">Sign Up</strong>-এ ক্লিক করুন',
+    rbgStep2:       'লগ ইন করার পর, উপরের নেভিগেশনে <strong style="color:#fff">API</strong>-তে ক্লিক করুন',
+    rbgStep3:       '<strong style="color:#fff">Get API Key</strong>-তে ক্লিক করুন এবং এটি কপি করুন',
+    rbgStep4:       'নিচে পেস্ট করুন এবং <strong style="color:#fff">Save Key</strong>-তে ক্লিক করুন',
+    rbgFreeTier:    '<strong style="color:#a9a4ff">📊 ফ্রি টিয়ার:</strong> মাসে ৫০টি API কল · প্রতি মাসের ১ তারিখে রিসেট হয়',
+    rbgPasteLabel:  'আপনার API কী এখানে পেস্ট করুন:',
+    rbgPlaceholder: 'যেমন abc123XYZ...',
+    rbgSaveBtn:     '✅ কী সংরক্ষণ করুন',
 
     /* ---- SDT page ---- */
     btnBackToStitcher: 'স্টিচারে ফিরুন',
@@ -882,6 +921,13 @@ const Lang = (() => {
     setText('lp-step2-title', lp.step2Title); setText('lp-step2-desc', lp.step2Desc);
     setText('lp-step3-title', lp.step3Title); setText('lp-step3-desc', lp.step3Desc);
     setText('lp-step4-title', lp.step4Title); setText('lp-step4-desc', lp.step4Desc);
+
+    /* ---------- remove.bg setup modal (rich-HTML lines with embedded <a>/<strong>) ---------- */
+    setHTML('rbgStep1', t('rbgStep1'));
+    setHTML('rbgStep2', t('rbgStep2'));
+    setHTML('rbgStep3', t('rbgStep3'));
+    setHTML('rbgStep4', t('rbgStep4'));
+    setHTML('rbgFreeTier', t('rbgFreeTier'));
 
     /* ---------- update active state in lang picker ---------- */
     _updatePickerActiveState();
