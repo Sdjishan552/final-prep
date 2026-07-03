@@ -109,6 +109,26 @@ const I18N = {
     privacyBannerGotIt:  'Got it',
     privacyBannerManage: 'Manage local access',
 
+    /* ---- Local File Access settings panel ---- */
+    dsAccessTitle:      'Local File Access',
+    dsAccessSubtitle:   'This is an in-app control, not a phone permission — there\u2019s nothing for your device to track here.',
+    dsAccessRowLabel:   'Allow uploads in this app',
+    dsAccessRowDesc:    'Turn off anytime to freeze new uploads for peace of mind',
+    dsAccessDoneBtn:    'Done',
+    dsAccessBtnOn:      'Local access',
+    dsAccessBtnOff:     'Access frozen',
+    dsAccessDeniedMsg:  'Local access is frozen — turn it back on to upload.',
+
+    /* ---- Local File Access panel (DSGate) ---- */
+    dsPanelTitle:    'Local File Access',
+    dsPanelSubtitle: 'This is an in-app control, not a phone permission — there\u2019s nothing for your device to track here.',
+    dsRowLabel:      'Allow uploads in this app',
+    dsRowDesc:       'Turn off anytime to freeze new uploads for peace of mind',
+    dsDoneBtn:       'Done',
+    dsAccessOnText:  'Local access',
+    dsAccessOffText: 'Access frozen',
+    dsDeniedToast:   'Local access is frozen — turn it back on to upload.',
+
     /* ---- SDT page ---- */
     btnBackToStitcher: 'Back to Stitcher',
     sdtBadge:          'Single-Doc Tools',
@@ -363,6 +383,26 @@ const I18N = {
     privacyBannerGotIt:  'समझ गया',
     privacyBannerManage: 'लोकल एक्सेस प्रबंधित करें',
 
+    /* ---- Local File Access settings panel ---- */
+    dsAccessTitle:      'लोकल फ़ाइल एक्सेस',
+    dsAccessSubtitle:   'यह ऐप के अंदर का नियंत्रण है, फ़ोन की अनुमति नहीं — यहां आपके डिवाइस के लिए ट्रैक करने लायक कुछ नहीं है।',
+    dsAccessRowLabel:   'इस ऐप में अपलोड की अनुमति दें',
+    dsAccessRowDesc:    'मन की शांति के लिए कभी भी बंद करके नए अपलोड फ्रीज़ करें',
+    dsAccessDoneBtn:    'हो गया',
+    dsAccessBtnOn:      'लोकल एक्सेस',
+    dsAccessBtnOff:     'एक्सेस फ्रीज़',
+    dsAccessDeniedMsg:  'लोकल एक्सेस फ्रीज़ है — अपलोड करने के लिए इसे वापस चालू करें।',
+
+    /* ---- Local File Access panel (DSGate) ---- */
+    dsPanelTitle:    'लोकल फ़ाइल एक्सेस',
+    dsPanelSubtitle: 'यह ऐप के अंदर का एक कंट्रोल है, फ़ोन की परमिशन नहीं — यहां आपके डिवाइस के लिए ट्रैक करने को कुछ नहीं है।',
+    dsRowLabel:      'इस ऐप में अपलोड की अनुमति दें',
+    dsRowDesc:       'मन की शांति के लिए कभी भी बंद करके नए अपलोड फ्रीज़ करें',
+    dsDoneBtn:       'हो गया',
+    dsAccessOnText:  'लोकल एक्सेस',
+    dsAccessOffText: 'एक्सेस फ्रीज़',
+    dsDeniedToast:   'लोकल एक्सेस फ्रीज़ है — अपलोड करने के लिए इसे वापस चालू करें।',
+
     /* ---- SDT page ---- */
     btnBackToStitcher: 'स्टिचर पर वापस जाएं',
     sdtBadge:          'एकल-डॉक टूल्स',
@@ -616,6 +656,26 @@ const I18N = {
     privacyBannerText:   'DocStitcher আপনার ছবি ও ফাইল স্থানীয়ভাবে খুলে সেগুলোর উপর কাজ করে। ডিফল্টভাবে কিছুই আপলোড হয় না — একমাত্র ব্যতিক্রম ব্যাকগ্রাউন্ড অপসারণের ঐচ্ছিক remove.bg ক্লাউড মোড, যা আপনাকে নিজের API কী দিয়ে নিজেই চালু করতে হয়।',
     privacyBannerGotIt:  'বুঝেছি',
     privacyBannerManage: 'লোকাল অ্যাক্সেস পরিচালনা করুন',
+
+    /* ---- Local File Access settings panel ---- */
+    dsAccessTitle:      'লোকাল ফাইল অ্যাক্সেস',
+    dsAccessSubtitle:   'এটি একটি অ্যাপ-এর ভেতরের নিয়ন্ত্রণ, ফোনের অনুমতি নয় — এখানে আপনার ডিভাইসের ট্র্যাক করার মতো কিছু নেই।',
+    dsAccessRowLabel:   'এই অ্যাপে আপলোডের অনুমতি দিন',
+    dsAccessRowDesc:    'মানসিক শান্তির জন্য যেকোনো সময় বন্ধ করে নতুন আপলোড ফ্রিজ করুন',
+    dsAccessDoneBtn:    'হয়ে গেছে',
+    dsAccessBtnOn:      'লোকাল অ্যাক্সেস',
+    dsAccessBtnOff:     'অ্যাক্সেস ফ্রিজ',
+    dsAccessDeniedMsg:  'লোকাল অ্যাক্সেস ফ্রিজ করা আছে — আপলোড করতে এটি আবার চালু করুন।',
+
+    /* ---- Local File Access panel (DSGate) ---- */
+    dsPanelTitle:    'লোকাল ফাইল অ্যাক্সেস',
+    dsPanelSubtitle: 'এটি অ্যাপের ভেতরের একটি নিয়ন্ত্রণ, ফোনের অনুমতি নয় — এখানে আপনার ডিভাইসের ট্র্যাক করার মতো কিছু নেই।',
+    dsRowLabel:      'এই অ্যাপে আপলোডের অনুমতি দিন',
+    dsRowDesc:       'নিশ্চিন্তে যেকোনো সময় বন্ধ করে নতুন আপলোড ফ্রিজ করুন',
+    dsDoneBtn:       'সম্পন্ন',
+    dsAccessOnText:  'লোকাল অ্যাক্সেস',
+    dsAccessOffText: 'অ্যাক্সেস ফ্রিজ',
+    dsDeniedToast:   'লোকাল অ্যাক্সেস ফ্রিজ করা আছে — আপলোড করতে এটি আবার চালু করুন।',
 
     /* ---- SDT page ---- */
     btnBackToStitcher: 'স্টিচারে ফিরুন',
@@ -961,6 +1021,9 @@ const Lang = (() => {
 
     /* ---------- toolbar ready count ---------- */
     if (typeof updateBatchActions === 'function') updateBatchActions();
+
+    /* ---------- refresh dynamic Local File Access button text ---------- */
+    if (typeof DSGate !== 'undefined' && DSGate._applyVisualState) DSGate._applyVisualState();
   }
 
   function set(lang) {
