@@ -2643,7 +2643,7 @@ window.sdt = (() => {
       const pw2=Math.round(g.placedW*PX_PER_MM), ph2=Math.round(g.placedH*PX_PER_MM);
       if(pw2<1||ph2<1) continue;
       ctx.drawImage(mtResultCanvas, px, py, pw2, ph2);
-      ctx.strokeStyle='rgba(160,160,185,0.6)'; ctx.lineWidth=0.6;
+      ctx.strokeStyle='#000000'; ctx.lineWidth=1;
       ctx.strokeRect(px+0.5, py+0.5, pw2-1, ph2-1);
       // number label
       const fs=Math.max(7, Math.round(Math.min(pw2,ph2)*0.13));
@@ -4930,7 +4930,7 @@ const mp = (() => {
       const px = Math.round((marginMM + item.x)*PX), py = Math.round((marginMM + item.y)*PX);
       const pw2 = Math.round(item.w*PX), ph2 = Math.round(item.h*PX);
       ctx.drawImage(item.person.resultCanvas, px, py, pw2, ph2);
-      ctx.strokeStyle='rgba(160,160,185,0.55)'; ctx.lineWidth=0.6;
+      ctx.strokeStyle='#000000'; ctx.lineWidth=1;
       ctx.strokeRect(px+0.5, py+0.5, pw2-1, ph2-1);
       placedByPerson.set(item.person, (placedByPerson.get(item.person) || 0) + 1);
     }
