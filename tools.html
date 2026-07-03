@@ -1015,33 +1015,33 @@
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
         <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#f96b3f,#ffd060);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">✂️</div>
         <div>
-          <div style="font-size:16px;font-weight:700;color:#fff">Setup remove.bg API Key</div>
-          <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px">Your key is saved only in your browser — we never see it</div>
+          <div style="font-size:16px;font-weight:700;color:#fff" data-i18n="rbgTitle">Setup remove.bg API Key</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px" data-i18n="rbgSubtitle">Your key is saved only in your browser — we never see it</div>
         </div>
       </div>
       <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:16px;margin-bottom:20px">
-        <div style="font-size:13px;font-weight:700;color:#ffd060;margin-bottom:10px">📋 How to get your FREE API Key</div>
+        <div style="font-size:13px;font-weight:700;color:#ffd060;margin-bottom:10px" data-i18n="rbgHowTitle">📋 How to get your FREE API Key</div>
         <ol style="font-size:12.5px;color:rgba(255,255,255,0.75);line-height:1.9;padding-left:18px;margin:0">
-          <li>Go to <a href="https://www.remove.bg" target="_blank" style="color:#f96b3f;font-weight:600">remove.bg</a> and click <strong style="color:#fff">Sign Up</strong></li>
-          <li>After logging in, click <strong style="color:#fff">API</strong> in the top nav</li>
-          <li>Click <strong style="color:#fff">Get API Key</strong> and copy it</li>
-          <li>Paste it below and click <strong style="color:#fff">Save Key</strong></li>
+          <li id="rbgStep1">Go to <a href="https://www.remove.bg" target="_blank" style="color:#f96b3f;font-weight:600">remove.bg</a> and click <strong style="color:#fff">Sign Up</strong></li>
+          <li id="rbgStep2">After logging in, click <strong style="color:#fff">API</strong> in the top nav</li>
+          <li id="rbgStep3">Click <strong style="color:#fff">Get API Key</strong> and copy it</li>
+          <li id="rbgStep4">Paste it below and click <strong style="color:#fff">Save Key</strong></li>
         </ol>
       </div>
       <div style="background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.25);border-radius:10px;padding:12px 14px;margin-bottom:20px">
-        <div style="font-size:12px;color:rgba(255,255,255,0.8);line-height:1.7">
+        <div style="font-size:12px;color:rgba(255,255,255,0.8);line-height:1.7" id="rbgFreeTier">
           <strong style="color:#a9a4ff">📊 Free tier:</strong> 50 API calls/month · resets on the 1st of each month
         </div>
       </div>
       <div style="margin-bottom:16px">
-        <label style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.6);display:block;margin-bottom:8px">Paste your API Key here:</label>
-        <input id="removeBgApiKeyInput" type="text" placeholder="e.g. abc123XYZ..."
+        <label style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.6);display:block;margin-bottom:8px" data-i18n="rbgPasteLabel">Paste your API Key here:</label>
+        <input id="removeBgApiKeyInput" type="text" placeholder="e.g. abc123XYZ..." data-i18n-ph="rbgPlaceholder"
           style="width:100%;padding:13px 16px;border-radius:10px;border:1.5px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.07);color:#fff;font-size:14px;outline:none;font-family:monospace;box-sizing:border-box"
           onfocus="this.style.borderColor='#f96b3f'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
       </div>
       <div style="display:flex;gap:10px">
-        <button onclick="saveRemoveBgKey()" style="flex:1;padding:14px;border-radius:12px;background:linear-gradient(135deg,#f96b3f,#ffc060);color:#fff;font-weight:700;font-size:14px;cursor:pointer;border:none">✅ Save Key</button>
-        <button onclick="hideRemoveBgSetup()" style="padding:14px 20px;border-radius:12px;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);font-size:14px;cursor:pointer;border:1.5px solid rgba(255,255,255,0.15)">Cancel</button>
+        <button onclick="saveRemoveBgKey()" style="flex:1;padding:14px;border-radius:12px;background:linear-gradient(135deg,#f96b3f,#ffc060);color:#fff;font-weight:700;font-size:14px;cursor:pointer;border:none" data-i18n="rbgSaveBtn">✅ Save Key</button>
+        <button onclick="hideRemoveBgSetup()" style="padding:14px 20px;border-radius:12px;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);font-size:14px;cursor:pointer;border:1.5px solid rgba(255,255,255,0.15)" data-i18n="btnCancel">Cancel</button>
       </div>
     </div>
   </div>
