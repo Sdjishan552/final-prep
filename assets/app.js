@@ -1998,11 +1998,11 @@ window.sdt = (() => {
     renderMultiTool();
   }
 
-  function renderMultiTool() {
-    // Apply rotate then crop to get current working image
+  // Shared by renderMultiTool() and the crop-drag-overlay fallback so both ever
+  // compute the same "current working image" (rotated, then cropped) the same way.
+  function getMtWorkingCanvas() {
     // Step 1: Rotate / flip. The output canvas grows for small tilt angles so nothing is clipped.
     const rotC=makeTransformedCanvas(mtOrigImg, mtState);
-
     // Step 2: Crop
     let cropSrc=rotC;
     if(mtState.hasCrop&&mtState.cropRect) {
@@ -2012,6 +2012,12 @@ window.sdt = (() => {
       cOut.getContext('2d').drawImage(rotC,cr.x,cr.y,cr.w,cr.h,0,0,cr.w,cr.h);
       cropSrc=cOut;
     }
+    return cropSrc;
+  }
+
+  function renderMultiTool() {
+    // Apply rotate then crop to get current working image
+    const cropSrc=getMtWorkingCanvas();
 
     // Step 3: Resize
     let finalW=cropSrc.width, finalH=cropSrc.height;
@@ -2045,8 +2051,14 @@ window.sdt = (() => {
         : '≈ estimated size: <span class="mt-qual-size-val">'+estStr+'</span>';
     }
 
-    // Draw crop UI on the display canvas
-    drawMtCropCanvas(rotC);
+    // Draw crop UI on the display canvas.
+    // BUGFIX (main image didn't visually update after Apply Crop): this used to
+    // always pass the full pre-crop `rotC` here, so the crop UI kept showing the
+    // whole original photo forever — only the download/Live Preview reflected the
+    // crop. Passing the current working image (post-crop) instead makes the main
+    // image itself shrink to the cropped result after Apply, matching how the
+    // Photo Maker section already behaves.
+    drawMtCropCanvas(cropSrc);
     // Auto-refresh A4 preview
     setTimeout(()=>{ try{a4Preview();}catch(e){} },30);
     // Persist state across page navigations
@@ -2142,10 +2154,13 @@ window.sdt = (() => {
     if (!cv2) return;
     const ctx = cv2.getContext('2d');
     if (mtOrigImg) {
-      // Use cached rotated canvas during drag — avoids recreating it on every mouse-move frame.
-      // This is the key fix for slow/old PCs (Windows 7, low RAM) where canvas operations are expensive.
-      const rotC = _cachedRotatedCanvas || makeTransformedCanvas(mtOrigImg, mtState);
-      ctx.drawImage(rotC, 0, 0, cv2.width, cv2.height);
+      // Use cached working-image canvas during drag — avoids recomputing it on every
+      // mouse-move frame. This is the key fix for slow/old PCs (Windows 7, low RAM)
+      // where canvas operations are expensive. Fallback (cache empty) recomputes the
+      // same rotate+crop pipeline as renderMultiTool() via the shared helper, so it
+      // always matches what's actually on screen — not just the rotation.
+      const workC = _cachedRotatedCanvas || getMtWorkingCanvas();
+      ctx.drawImage(workC, 0, 0, cv2.width, cv2.height);
     }
     if (mtCropDisplayRect) {
       const {x,y,w,h} = mtCropDisplayRect;
@@ -2245,12 +2260,15 @@ window.sdt = (() => {
       mtCropDragging=false;
       if (_cropRafId) { cancelAnimationFrame(_cropRafId); _cropRafId=null; }
       if(mtCropDisplayRect && mtCropDisplayRect.w>4 && mtCropDisplayRect.h>4){
-        mtState.cropRect={
-          x: Math.round(mtCropDisplayRect.x / mtDisplayScale),
-          y: Math.round(mtCropDisplayRect.y / mtDisplayScale),
-          w: Math.round(mtCropDisplayRect.w / mtDisplayScale),
-          h: Math.round(mtCropDisplayRect.h / mtDisplayScale),
-        };
+        // BUGFIX (re-crop selects the wrong region): see commitMtCropDrag() below
+        // for the full explanation — compose with the previous crop's offset so
+        // cropRect stays in full-original-image coordinates.
+        const prevCr = (mtState.hasCrop && mtState.cropRect) ? mtState.cropRect : {x:0,y:0};
+        const nx = Math.round(mtCropDisplayRect.x / mtDisplayScale);
+        const ny = Math.round(mtCropDisplayRect.y / mtDisplayScale);
+        const nw = Math.round(mtCropDisplayRect.w / mtDisplayScale);
+        const nh = Math.round(mtCropDisplayRect.h / mtDisplayScale);
+        mtState.cropRect={ x: prevCr.x + nx, y: prevCr.y + ny, w: nw, h: nh };
         mtState.hasCrop=true;
         document.getElementById('mtApplyCropBtn').classList.add('active-state');
       }
@@ -2265,13 +2283,23 @@ window.sdt = (() => {
     mtCropDragging=false;
     if (_cropRafId) { cancelAnimationFrame(_cropRafId); _cropRafId=null; }
     if(mtCropDisplayRect && mtCropDisplayRect.w>4 && mtCropDisplayRect.h>4){
-      // Convert canvas-pixel coords → original image coords
-      mtState.cropRect={
-        x: Math.round(mtCropDisplayRect.x / mtDisplayScale),
-        y: Math.round(mtCropDisplayRect.y / mtDisplayScale),
-        w: Math.round(mtCropDisplayRect.w / mtDisplayScale),
-        h: Math.round(mtCropDisplayRect.h / mtDisplayScale),
-      };
+      // BUGFIX (re-crop selects the wrong region, "cropping something else"):
+      // mtDisplayScale is computed against the CURRENTLY DISPLAYED image. Once a
+      // crop has already been applied, that display is the cropped result, not
+      // the full original — so mtCropDisplayRect / mtDisplayScale gives
+      // coordinates relative to that cropped view (its own top-left is (0,0)).
+      // renderMultiTool() always re-crops from the full rotated image (rotC)
+      // using mtState.cropRect though, so simply overwriting cropRect with those
+      // view-relative coordinates cut out the wrong part of the original photo.
+      // Fix: offset the new selection by the previous crop's (x,y) so cropRect
+      // always stays in full-original-image coordinates, correctly composing
+      // successive crops — same fix as the Photo Maker section.
+      const prevCr = (mtState.hasCrop && mtState.cropRect) ? mtState.cropRect : {x:0,y:0};
+      const nx = Math.round(mtCropDisplayRect.x / mtDisplayScale);
+      const ny = Math.round(mtCropDisplayRect.y / mtDisplayScale);
+      const nw = Math.round(mtCropDisplayRect.w / mtDisplayScale);
+      const nh = Math.round(mtCropDisplayRect.h / mtDisplayScale);
+      mtState.cropRect={ x: prevCr.x + nx, y: prevCr.y + ny, w: nw, h: nh };
       mtState.hasCrop=true;
       const btn=document.getElementById('mtApplyCropBtn');
       if(btn) btn.classList.add('active-state');
@@ -4789,12 +4817,23 @@ const mp = (() => {
       p.dragging = false;
       if (_mpCropRafId) { cancelAnimationFrame(_mpCropRafId); _mpCropRafId = null; }
       if (p.cropDisplayRect && p.cropDisplayRect.w > 4 && p.cropDisplayRect.h > 4) {
-        p.state.cropRect = {
-          x: Math.round(p.cropDisplayRect.x / p.displayScale),
-          y: Math.round(p.cropDisplayRect.y / p.displayScale),
-          w: Math.round(p.cropDisplayRect.w / p.displayScale),
-          h: Math.round(p.cropDisplayRect.h / p.displayScale),
-        };
+        // BUGFIX (re-crop selects the wrong region): mtDisplayScale/p.displayScale
+        // is computed against the CURRENTLY DISPLAYED image, which after a crop is
+        // already applied is the cropped result, not the full original — so
+        // p.cropDisplayRect / p.displayScale gives coordinates relative to that
+        // cropped view, e.g. (0,0) is the top-left of the crop, not the original
+        // photo. renderPersonCanvas() always re-crops from the full rotated image
+        // (rotC) using p.state.cropRect though, so overwriting cropRect with those
+        // view-relative coordinates cut out the wrong part of the original photo.
+        // Fix: offset the new selection by the previous crop's (x,y) so cropRect
+        // always stays in full-original-image coordinates, correctly composing
+        // successive crops.
+        const prevCr = (p.state.hasCrop && p.state.cropRect) ? p.state.cropRect : {x:0,y:0};
+        const nx = Math.round(p.cropDisplayRect.x / p.displayScale);
+        const ny = Math.round(p.cropDisplayRect.y / p.displayScale);
+        const nw = Math.round(p.cropDisplayRect.w / p.displayScale);
+        const nh = Math.round(p.cropDisplayRect.h / p.displayScale);
+        p.state.cropRect = { x: prevCr.x + nx, y: prevCr.y + ny, w: nw, h: nh };
         p.state.hasCrop = true;
       }
     }
@@ -4835,12 +4874,14 @@ const mp = (() => {
     cv.ontouchend = () => {
       if (!p.dragging) return; p.dragging = false;
       if (p.cropDisplayRect && p.cropDisplayRect.w > 4 && p.cropDisplayRect.h > 4) {
-        p.state.cropRect = {
-          x: Math.round(p.cropDisplayRect.x / p.displayScale),
-          y: Math.round(p.cropDisplayRect.y / p.displayScale),
-          w: Math.round(p.cropDisplayRect.w / p.displayScale),
-          h: Math.round(p.cropDisplayRect.h / p.displayScale),
-        };
+        // Same fix as commitCropDrag() above — compose with the previous crop's
+        // offset so a re-crop cuts out the region the user actually selected.
+        const prevCr = (p.state.hasCrop && p.state.cropRect) ? p.state.cropRect : {x:0,y:0};
+        const nx = Math.round(p.cropDisplayRect.x / p.displayScale);
+        const ny = Math.round(p.cropDisplayRect.y / p.displayScale);
+        const nw = Math.round(p.cropDisplayRect.w / p.displayScale);
+        const nh = Math.round(p.cropDisplayRect.h / p.displayScale);
+        p.state.cropRect = { x: prevCr.x + nx, y: prevCr.y + ny, w: nw, h: nh };
         p.state.hasCrop = true;
       }
     };
