@@ -2,7 +2,7 @@
    DocStitcher i18n — English / Hindi / Bengali
    v2.0  —  3-language support with voluntary picker
 ============================================================ */
-
+  
 const I18N = {
   en: {
     /* ---- Brand / Header ---- */
