@@ -2,7 +2,7 @@
    DocStitcher i18n — English / Hindi / Bengali
    v2.0  —  3-language support with voluntary picker
 ============================================================ */
-  
+
 const I18N = {
   en: {
     /* ---- Brand / Header ---- */
@@ -102,6 +102,12 @@ const I18N = {
     rbgPasteLabel:  'Paste your API Key here:',
     rbgPlaceholder: 'e.g. abc123XYZ...',
     rbgSaveBtn:     '✅ Save Key',
+
+    /* ---- Privacy notice banner ---- */
+    privacyBannerTitle:  'Your files stay on your device, by default',
+    privacyBannerText:   'DocStitcher opens photos and files locally to work on them. Nothing is uploaded by default — the one exception is background removal\u2019s optional remove.bg cloud mode, which you have to turn on yourself with your own API key.',
+    privacyBannerGotIt:  'Got it',
+    privacyBannerManage: 'Manage local access',
 
     /* ---- SDT page ---- */
     btnBackToStitcher: 'Back to Stitcher',
@@ -351,6 +357,12 @@ const I18N = {
     rbgPlaceholder: 'उदा. abc123XYZ...',
     rbgSaveBtn:     '✅ की सेव करें',
 
+    /* ---- Privacy notice banner ---- */
+    privacyBannerTitle:  'आपकी फ़ाइलें डिफ़ॉल्ट रूप से आपके डिवाइस पर ही रहती हैं',
+    privacyBannerText:   'DocStitcher आपकी फ़ोटो और फ़ाइलों को स्थानीय रूप से खोलकर उन पर काम करता है। डिफ़ॉल्ट रूप से कुछ भी अपलोड नहीं होता — एकमात्र अपवाद बैकग्राउंड हटाने का वैकल्पिक remove.bg क्लाउड मोड है, जिसे आपको अपनी खुद की API की से खुद चालू करना होता है।',
+    privacyBannerGotIt:  'समझ गया',
+    privacyBannerManage: 'लोकल एक्सेस प्रबंधित करें',
+
     /* ---- SDT page ---- */
     btnBackToStitcher: 'स्टिचर पर वापस जाएं',
     sdtBadge:          'एकल-डॉक टूल्स',
@@ -598,6 +610,12 @@ const I18N = {
     rbgPasteLabel:  'আপনার API কী এখানে পেস্ট করুন:',
     rbgPlaceholder: 'যেমন abc123XYZ...',
     rbgSaveBtn:     '✅ কী সংরক্ষণ করুন',
+
+    /* ---- Privacy notice banner ---- */
+    privacyBannerTitle:  'আপনার ফাইল ডিফল্টভাবে আপনার ডিভাইসেই থাকে',
+    privacyBannerText:   'DocStitcher আপনার ছবি ও ফাইল স্থানীয়ভাবে খুলে সেগুলোর উপর কাজ করে। ডিফল্টভাবে কিছুই আপলোড হয় না — একমাত্র ব্যতিক্রম ব্যাকগ্রাউন্ড অপসারণের ঐচ্ছিক remove.bg ক্লাউড মোড, যা আপনাকে নিজের API কী দিয়ে নিজেই চালু করতে হয়।',
+    privacyBannerGotIt:  'বুঝেছি',
+    privacyBannerManage: 'লোকাল অ্যাক্সেস পরিচালনা করুন',
 
     /* ---- SDT page ---- */
     btnBackToStitcher: 'স্টিচারে ফিরুন',
