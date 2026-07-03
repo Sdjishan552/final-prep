@@ -119,6 +119,9 @@ const I18N = {
     dsAccessBtnOff:     'Access frozen',
     dsAccessDeniedMsg:  'Local access is frozen — turn it back on to upload.',
 
+    /* ---- Background removal: recommend remove.bg API for best results ---- */
+    bgApiTip: '💡 <strong>For the best, professional-quality cutout</strong> (clean edges, accurate hair detail) — use the <strong>☁️ remove.bg API</strong> option above. The built-in local AI is fast and free, but can be less precise on tricky edges.',
+
     /* ---- Local File Access panel (DSGate) ---- */
     dsPanelTitle:    'Local File Access',
     dsPanelSubtitle: 'This is an in-app control, not a phone permission — there\u2019s nothing for your device to track here.',
@@ -393,6 +396,9 @@ const I18N = {
     dsAccessBtnOff:     'एक्सेस फ्रीज़',
     dsAccessDeniedMsg:  'लोकल एक्सेस फ्रीज़ है — अपलोड करने के लिए इसे वापस चालू करें।',
 
+    /* ---- Background removal: recommend remove.bg API for best results ---- */
+    bgApiTip: '💡 <strong>सबसे बेहतरीन, प्रोफेशनल-क्वालिटी कटआउट के लिए</strong> (साफ़ किनारे, सटीक बाल विवरण) — ऊपर दिए गए <strong>☁️ remove.bg API</strong> विकल्प का उपयोग करें। बिल्ट-इन लोकल AI तेज़ और मुफ़्त है, लेकिन जटिल किनारों पर उतना सटीक नहीं हो सकता।',
+
     /* ---- Local File Access panel (DSGate) ---- */
     dsPanelTitle:    'लोकल फ़ाइल एक्सेस',
     dsPanelSubtitle: 'यह ऐप के अंदर का एक कंट्रोल है, फ़ोन की परमिशन नहीं — यहां आपके डिवाइस के लिए ट्रैक करने को कुछ नहीं है।',
@@ -666,6 +672,9 @@ const I18N = {
     dsAccessBtnOn:      'লোকাল অ্যাক্সেস',
     dsAccessBtnOff:     'অ্যাক্সেস ফ্রিজ',
     dsAccessDeniedMsg:  'লোকাল অ্যাক্সেস ফ্রিজ করা আছে — আপলোড করতে এটি আবার চালু করুন।',
+
+    /* ---- Background removal: recommend remove.bg API for best results ---- */
+    bgApiTip: '💡 <strong>সেরা, পেশাদার-মানের কাটআউটের জন্য</strong> (পরিষ্কার প্রান্ত, নিখুঁত চুলের বিবরণ) — উপরের <strong>☁️ remove.bg API</strong> অপশনটি ব্যবহার করুন। বিল্ট-ইন লোকাল AI দ্রুত ও ফ্রি, তবে জটিল প্রান্তে ততটা নিখুঁত নাও হতে পারে।',
 
     /* ---- Local File Access panel (DSGate) ---- */
     dsPanelTitle:    'লোকাল ফাইল অ্যাক্সেস',
@@ -1007,6 +1016,9 @@ const Lang = (() => {
     setHTML('rbgStep4', t('rbgStep4'));
     setHTML('rbgFreeTier', t('rbgFreeTier'));
 
+    /* ---------- background removal API tip (Multi-Tool editor, static markup) ---------- */
+    setHTML('mtBgApiTip', t('bgApiTip'));
+
     /* ---------- update active state in lang picker ---------- */
     _updatePickerActiveState();
 
@@ -1024,6 +1036,9 @@ const Lang = (() => {
 
     /* ---------- refresh dynamic Local File Access button text ---------- */
     if (typeof DSGate !== 'undefined' && DSGate._applyVisualState) DSGate._applyVisualState();
+
+    /* ---------- refresh Photo Maker cards (bg-removal API tip lives in this dynamic template) ---------- */
+    if (typeof mp !== 'undefined' && mp.renderPersonCards) mp.renderPersonCards();
   }
 
   function set(lang) {
