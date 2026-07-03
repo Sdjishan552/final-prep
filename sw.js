@@ -1,4 +1,4 @@
-const CACHE = 'docstitcher-v9.28';
+const CACHE = 'docstitcher-v9.29';
 const ASSETS = [
   '/assets/style.css',
   '/assets/app.js',
