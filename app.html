@@ -124,11 +124,11 @@
         </svg>
       </div>
       <div class="privacy-banner-body">
-        <p class="privacy-banner-title">Your files stay on your device, by default</p>
-        <p class="privacy-banner-text">DocStitcher opens photos and files locally to work on them. Nothing is uploaded by default — the one exception is background removal’s optional remove.bg cloud mode, which you have to turn on yourself with your own API key.</p>
+        <p class="privacy-banner-title" data-i18n="privacyBannerTitle">Your files stay on your device, by default</p>
+        <p class="privacy-banner-text" data-i18n="privacyBannerText">DocStitcher opens photos and files locally to work on them. Nothing is uploaded by default — the one exception is background removal’s optional remove.bg cloud mode, which you have to turn on yourself with your own API key.</p>
         <div class="privacy-banner-actions">
-          <button class="privacy-banner-got-it" onclick="PrivacyNotice.gotIt()">Got it</button>
-          <button class="privacy-banner-manage" onclick="PrivacyNotice.manage()">Manage local access</button>
+          <button class="privacy-banner-got-it" onclick="PrivacyNotice.gotIt()" data-i18n="privacyBannerGotIt">Got it</button>
+          <button class="privacy-banner-manage" onclick="PrivacyNotice.manage()" data-i18n="privacyBannerManage">Manage local access</button>
         </div>
       </div>
       <button class="privacy-banner-close" onclick="PrivacyNotice.gotIt()" title="Dismiss" aria-label="Dismiss">×</button>
@@ -141,19 +141,19 @@
        ============================================================ -->
   <div id="dsAccessPanel" onclick="if(event.target===this) DSGate.closePanel()">
     <div class="ds-settings-card">
-      <h3 class="ds-settings-title">Local File Access</h3>
-      <p class="ds-settings-subtitle">This is an in-app control, not a phone permission — there's nothing for your device to track here.</p>
+      <h3 class="ds-settings-title" data-i18n="dsAccessTitle">Local File Access</h3>
+      <p class="ds-settings-subtitle" data-i18n="dsAccessSubtitle">This is an in-app control, not a phone permission — there's nothing for your device to track here.</p>
       <div class="ds-settings-row">
         <div class="ds-settings-row-label">
-          <strong>Allow uploads in this app</strong>
-          <span>Turn off anytime to freeze new uploads for peace of mind</span>
+          <strong data-i18n="dsAccessRowLabel">Allow uploads in this app</strong>
+          <span data-i18n="dsAccessRowDesc">Turn off anytime to freeze new uploads for peace of mind</span>
         </div>
         <label class="ds-switch">
           <input type="checkbox" id="dsAccessToggle" onchange="DSGate.setEnabled(this.checked)">
           <span class="ds-switch-track"></span>
         </label>
       </div>
-      <button class="ds-settings-close" onclick="DSGate.closePanel()">Done</button>
+      <button class="ds-settings-close" onclick="DSGate.closePanel()" data-i18n="dsAccessDoneBtn">Done</button>
     </div>
   </div>
 
@@ -175,7 +175,7 @@
         <button id="langPickerBtn" onclick="Lang.openPicker()" title="Choose Language">EN</button>
         <button class="btn-ghost" id="helpBtn" onclick="toggleHelp()" data-i18n="helpBtn">Help</button>
         <button id="dsFileAccessBtn" onclick="DSGate.openPanel()" title="Local File Access">
-          <span id="dsFileAccessBtnIcon">🔒</span> <span id="dsFileAccessBtnText">Local access</span>
+          <span id="dsFileAccessBtnIcon">🔒</span> <span id="dsFileAccessBtnText" data-i18n="dsAccessBtnOn">Local access</span>
         </button>
       </div>
     </div>
@@ -333,7 +333,7 @@
         const toggle = document.getElementById('dsAccessToggle');
         if (btn) btn.classList.toggle('on', on);
         if (icon) icon.textContent = on ? '✅' : '🔒';
-        if (text) text.textContent = on ? 'Local access' : 'Access frozen';
+        if (text) text.textContent = (window.Lang && Lang.t) ? Lang.t(on ? 'dsAccessBtnOn' : 'dsAccessBtnOff') : (on ? 'Local access' : 'Access frozen');
         if (toggle) toggle.checked = on;
       },
 
@@ -348,10 +348,11 @@
       },
 
       _deniedToast() {
+        const msg = (window.Lang && Lang.t) ? Lang.t('dsAccessDeniedMsg') : 'Local access is frozen — turn it back on to upload.';
         if (typeof toast === 'function') {
-          toast("Local access is frozen — turn it back on to upload.", 'error');
+          toast(msg, 'error');
         } else {
-          alert("Local access is frozen — turn it back on to upload.");
+          alert(msg);
         }
       },
 
