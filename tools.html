@@ -115,11 +115,11 @@
         </svg>
       </div>
       <div class="privacy-banner-body">
-        <p class="privacy-banner-title">Your files stay on your device, by default</p>
-        <p class="privacy-banner-text">DocStitcher opens photos and files locally to work on them. Nothing is uploaded by default — the one exception is background removal’s optional remove.bg cloud mode, which you have to turn on yourself with your own API key.</p>
+        <p class="privacy-banner-title" data-i18n="privacyBannerTitle">Your files stay on your device, by default</p>
+        <p class="privacy-banner-text" data-i18n="privacyBannerText">DocStitcher opens photos and files locally to work on them. Nothing is uploaded by default — the one exception is background removal’s optional remove.bg cloud mode, which you have to turn on yourself with your own API key.</p>
         <div class="privacy-banner-actions">
-          <button class="privacy-banner-got-it" onclick="PrivacyNotice.gotIt()">Got it</button>
-          <button class="privacy-banner-manage" onclick="PrivacyNotice.manage()">Manage local access</button>
+          <button class="privacy-banner-got-it" onclick="PrivacyNotice.gotIt()" data-i18n="privacyBannerGotIt">Got it</button>
+          <button class="privacy-banner-manage" onclick="PrivacyNotice.manage()" data-i18n="privacyBannerManage">Manage local access</button>
         </div>
       </div>
       <button class="privacy-banner-close" onclick="PrivacyNotice.gotIt()" title="Dismiss" aria-label="Dismiss">×</button>
