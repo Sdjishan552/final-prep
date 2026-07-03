@@ -4275,7 +4275,7 @@ const mp = (() => {
               </select>
             </div>
             <div style="margin-top:8px;padding:9px 12px;background:linear-gradient(135deg,rgba(249,107,63,0.12),rgba(255,192,96,0.12));border:1.5px solid rgba(249,107,63,0.35);border-radius:9px;font-size:11.5px;color:var(--text,#2a1d16);line-height:1.5">
-              💡 <strong>For the best, professional-quality cutout</strong> (clean edges, accurate hair detail) — use the <strong>☁️ remove.bg API</strong> option above. The built-in local AI is fast and free, but can be less precise on tricky edges.
+              ${(window.Lang && Lang.t) ? Lang.t('bgApiTip') : '💡 <strong>For the best, professional-quality cutout</strong> (clean edges, accurate hair detail) — use the <strong>☁️ remove.bg API</strong> option above. The built-in local AI is fast and free, but can be less precise on tricky edges.'}
             </div>
             <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0 4px">
               <span class="ds-removebg-key-status" style="font-size:11px"></span>
@@ -5674,7 +5674,7 @@ const mp = (() => {
           refreshPreview, refreshSingleImagePreview, downloadSingleImageFromSelector, downloadPDF, downloadFillPagePDF, downloadSingleImage,
           mpSetSingleQuality,
           printPDF, printFillPagePDF,
-          setMpPaperSize, setMpCustomDim, setMpImgDir, setMpCorner, mpSetBrightness, mpSendToApp};
+          setMpPaperSize, setMpCustomDim, setMpImgDir, setMpCorner, mpSetBrightness, mpSendToApp, renderPersonCards};
 })();
 
 /* ============================================================
